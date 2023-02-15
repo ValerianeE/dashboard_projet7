@@ -1,0 +1,6 @@
+streamlit == 1.17.0
+pandas == 1.4.2
+seaborn == 0.11.2
+requests == 2.27.1
+shap == 0.41.0
+matplotlib == 3.5.1
