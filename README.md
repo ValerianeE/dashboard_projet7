@@ -22,10 +22,10 @@ Prêt à dépenser décide donc de développer un dashboard interactif pour q
 **Découpage des dossiers :**
 
 Deux dépôts Github ont été créés pour ce projet. Ce dépôt, « dashboard_projet7 », est celui qui correspond à la partie dashboard du projet. Ce dernier a été créé avec la librairie open-source Streamlit. Voici le contenu des fichiers :
-Le code du dashboard se trouve dans le fichier dashboard.py
-colonnes.csv, graphique.csv, liste_sampled.csv sont nécessaires pour les différents listes déroulantes, pour la génération de graphiques et celle du score
-ab.png et loan.png sont des images servant à améliorer l'esthétique du dashboard
-requirements.txt contient les packages dont l'installation est nécessaire pour le déploiement du dashboard
+- Le code du dashboard se trouve dans le fichier dashboard.py
+- colonnes.csv, graphique.csv, liste_sampled.csv sont nécessaires pour les différents listes déroulantes, pour la génération de graphiques et celle du score
+- ab.png et loan.png sont des images servant à améliorer l'esthétique du dashboard
+- requirements.txt contient les packages dont l'installation est nécessaire pour le déploiement du dashboard
 
 
 **Fonctionnement du dashboard :**
