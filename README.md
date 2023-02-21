@@ -35,7 +35,7 @@ Le but du dashboard est :
 - d'analyser les données de ce client via des graphiques, à la fois de manière univariée et en comparant les données de ce client à celles des autres clients
 
 Dans le dashboard, il faut choisir 3 éléments :
-- le numéro ID du clients
+- le numéro ID du client
 - deux variables que l'on souhaite analyser spécifiquement
 
 En cliquant sur le bouton « predict », la probabilité de remboursement du prêt par le client est calculée via l'API. Différent graphiques sont générés : kdeplot ou diagramme en barres des variables dont l'analyse été demandée, summary plot et waterfall plot des SHAP Values...
