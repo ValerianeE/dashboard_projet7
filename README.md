@@ -31,8 +31,8 @@ Deux dépôts Github ont été créés pour ce projet. Ce dépôt, « dashboard
 **Fonctionnement du dashboard :**
 
 Le but du dashboard est :
-- de générer un score de probabilité
-- d'analyser les données de ce client via des graphiques, à la fois de manière univariée et en comparant les données de ce client à celles des autres clients. 
+- d'appeler l'API pour générer un score de probabilité pour un client à partir de son numéro ID
+- d'analyser les données de ce client via des graphiques, à la fois de manière univariée et en comparant les données de ce client à celles des autres clients
 
 Dans le dashboard, il faut choisir 3 éléments :
 - Le numéro ID du clients
