@@ -165,13 +165,13 @@ if btn_predict:
     #Kdeplot ou diagramme en barres
     if option2 in quali:
         graphique[option2] = graphique[option2].astype(int)
-        st.markdown('**Diagramme en barres de** ' + str(option2) + " **:**")
+        st.markdown('Diagramme en barres de ' + str(option2) + " :")
         fig = plt.figure()
         palette=['#c5c9c7' if (x != int(graphique[option2].loc[[option1]].values)) else '#840000' for x in graphique[option2].value_counts().index.sort_values()]
         sns.countplot(x=graphique[option2], palette=palette)
         st.pyplot(fig.figure)
     else:
-        st.markdown('**Kdeplot de** ' + str(option2)+ " **:**")
+        st.markdown('Kdeplot de ' + str(option2)+ " :")
         fig = plt.figure()
         fig = sns.kdeplot(data=graphique, x=option2,hue="Catégories de client", cut=0, fill=True, linestyle="--")
         lss = ['--', ':']
@@ -185,13 +185,13 @@ if btn_predict:
 
     if option3 in quali:
         graphique[option3] = graphique[option3].astype(int)
-        st.markdown('**Diagramme en barres de** ' + str(option3)+ " **:**")
+        st.markdown('Diagramme en barres de ' + str(option3)+ " :")
         fig = plt.figure()
         palette=['#c5c9c7' if (x != int(graphique[option3].loc[[option1]].values)) else '#840000' for x in graphique[option3].value_counts().index.sort_values()]
         sns.countplot(x=graphique[option3], palette=palette)
         st.pyplot(fig.figure)
     else:
-        st.markdown('**Kdeplot de** ' + str(option3)+ " **:**")
+        st.markdown('Kdeplot de ' + str(option3)+ " :")
         fig = plt.figure()
         fig = sns.kdeplot(data=graphique, x=option3,hue="Catégories de client", cut=0, fill=True, linestyle="--")
         lss = ['--', ':']
@@ -205,13 +205,13 @@ if btn_predict:
 
     # Scatterplot dans le cas de deux variables quantitatives:
     if option2 not in quali and option3 not in quali:
-        st.markdown('**Nuage de points de** ' + str(option2)+ " **et de** "+ str(option3) + " **:**")
+        st.markdown('Nuage de points de ' + str(option2)+ " et de "+ str(option3) + " :")
         fig = plt.figure()
         sns.scatterplot(x=option2,y=option3, data=graphique, hue="Score", palette ="flare")
         st.pyplot(fig.figure)
     #Diagramme en barres du tableau de contingence si les deux variables sont qualitatives
     elif option2 in quali and option3 in quali:
-        st.markdown('**Diagramme en barres du tableau de contingence de** ' + str(option2)+ " **et de** "+ str(option3) + " **:**")
+        st.markdown('Diagramme en barres du tableau de contingence de ' + str(option2)+ " et de "+ str(option3) + " :")
         data_crosstab = pd.crosstab(graphique[option2], 
             graphique[option3],
             margins = False)
@@ -222,7 +222,7 @@ if btn_predict:
         st.pyplot(fig.figure)
     #Boxplot si une variable est qualitatives et l'autre quantitatives
     else:
-        st.markdown('**Boxplot de** ' + str(option2)+ " **et de** "+ str(option3) + " **:**")
+        st.markdown('Boxplot de ' + str(option2)+ " et de "+ str(option3) + " :")
         fig = plt.figure()
         if option2 in quali:
             sns.boxplot(x=option2,y=option3, data=graphique)
