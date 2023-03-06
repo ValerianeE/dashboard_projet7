@@ -4,7 +4,6 @@ import seaborn as sns
 import requests
 import shap
 import pickle
-from shap.plots import waterfall
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
@@ -64,7 +63,6 @@ with col2:
     st.write("""L’entreprise, Prêt à dépenser, souhaite mettre en œuvre un outil de “scoring crédit” pour calculer la probabilité qu’un client rembourse son crédit, 
 puis classifie la demande en crédit accordé ou refusé. Elle souhaite donc développer un algorithme de classification en s’appuyant sur des sources de données 
 variées (données comportementales, données provenant d'autres institutions financières, etc.).
-
 Prêt à dépenser a donc décidé de développer ce dashboard interactif pour que les chargés de relation client puissent à la fois expliquer de façon la plus 
 transparente possible les décisions d’octroi de crédit, mais également permettre à leurs clients de disposer de leurs informations personnelles et de les 
 explorer facilement. """)
@@ -73,7 +71,6 @@ st.subheader("Pour prédire le statut de défaut/échec de remboursement, vous d
 st.markdown("""
 1. Entrez le numéro identifiant de la personne faisant une demande de prêt ;
 2. Appuyez sur le bouton "Prédire" et attendez le résultat.
-
 """)
 
 st.subheader("Vous pouvez trouver ci-dessous la probabilité de remboursement du prêt par le demandeur:")
@@ -120,7 +117,7 @@ if btn_predict:
     # Affichage du score:
     st.markdown('**La probabilité de faillite de rembourser du prêt par le client est de** ' + str(round(proba, 2)))
     # Probabilité par rapport au seuil fixé
-    if proba < 0.5: 
+    if proba > 0.5: 
         st.error('Attention! Le demandeur a une grande probabilté de ne pas rembourser le prêt!') 
     else: 
         st.success("C'est bon! Le demandeur a une grande probabilité de rembourser son prêt!")
@@ -143,19 +140,19 @@ if btn_predict:
         'borderwidth': 2,
         'bordercolor': "gray",
         'steps': [
-            {'range': [0, 0.5], 'color': 'crimson'},
-            {'range': [0.5, 1], 'color': 'springgreen'}],
+            {'range': [0, 0.5], 'color': 'springgreen'},
+            {'range': [0.5, 1], 'color': 'crimson'}],
         'threshold': {
             'line': {'color': "black", 'width': 4},
             'thickness': 0.75,
             'value': 0.5}}))
-    fig.update_layout(paper_bgcolor = "lavender", font = {'color': "darkblue", 'family': "Arial"})
+    fig.update_layout(paper_bgcolor = "white", font = {'color': "darkblue", 'family': "Arial"})
     st.write(fig)
 
     #Waterfall plot
     X_train = pd.read_csv('colonnes.csv',delimiter= ',')
     st.markdown('SHAP waterfall Plot pour le client demandeur de prêt:')
-    waterfall_plot(10, X_train.columns, d[2], pd.DataFrame.from_dict(d[1]["0"],orient='index').values[:,0])    
+    waterfall_plot(7, X_train.columns, d[2], pd.DataFrame.from_dict(d[1]["0"],orient='index').values[:,0])    
     plt.gcf()
     st.pyplot(plt.gcf())
 
@@ -212,13 +209,17 @@ if btn_predict:
         fig = plt.figure()
         sns.scatterplot(x=option2,y=option3, data=graphique, hue="Score", palette ="flare")
         st.pyplot(fig.figure)
-    #Tableau de contingence si les deux variables sont qualitatives
+    #Diagramme en barres du tableau de contingence si les deux variables sont qualitatives
     elif option2 in quali and option3 in quali:
-        st.markdown('**Tableau de contingence de** ' + str(option2)+ " **et de** "+ str(option3) + " **:**")
+        st.markdown('**Diagramme en barres du tableau de contingence de** ' + str(option2)+ " **et de** "+ str(option3) + " **:**")
         data_crosstab = pd.crosstab(graphique[option2], 
             graphique[option3],
             margins = False)
-        st.table(data_crosstab)
+        fig = plt.figure()
+        fig = data_crosstab.plot(kind="bar", 
+                            figsize=(8,8),
+                            stacked=True)    
+        st.pyplot(fig.figure)
     #Boxplot si une variable est qualitatives et l'autre quantitatives
     else:
         st.markdown('**Boxplot de** ' + str(option2)+ " **et de** "+ str(option3) + " **:**")
