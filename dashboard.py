@@ -115,7 +115,7 @@ if btn_predict:
     proba=d[0]
 
     # Affichage du score:
-    st.markdown('**La probabilité de faillite de rembourser du prêt par le client est de** ' + str(round(proba, 2)))
+    st.markdown('**La probabilité de faillite de remboursement du prêt par le client est de** ' + str(round(proba, 2)))
     # Probabilité par rapport au seuil fixé
     if proba > 0.5: 
         st.error('Attention! Le demandeur a une grande probabilté de ne pas rembourser le prêt!') 
