@@ -40,7 +40,7 @@ def waterfall_plot(nb, ft, expected_val, shap_val):
 @st.cache
 def afficherScore(score):
     # Affichage du score:
-    st.markdown('**La probabilité de faillite de rembourser du prêt par le client est de** ' + str(score))
+    st.markdown('**La probabilité de faillite de remboursement du prêt par le client est de** ' + str(score))
     # Probabilité par rapport au seuil fixé
     if score < 0.5: 
         st.error('Attention! Le demandeur a une grande probabilté de ne pas rembourser le prêt!') 
